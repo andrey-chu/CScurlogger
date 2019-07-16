@@ -21,4 +21,9 @@ def aux_gen_ladder_day(x): # ladder of a day length starts at 1 jan 1970
     day_length = 24*60*60
     return math.floor(x/day_length)/365/10
 
+def aux_gen_sin_workday(x): # sinus of a day length starts at 1 jan 1970
+    import math
+    workday_length = 6*60*60
+    return math.sin(x/(workday_length*2*math.pi))
+
 
