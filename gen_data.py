@@ -5,12 +5,8 @@ time
 
 
 """
-# Exception class
-class Error(Exception):
-    pass
-# Class that describes wrong parameters delivered to function
-class ArgumentsError(Error):
-    pass
+
+
 
 def gen_artificial_data(functions, freq, synch, stoptime, *starttime):
     """
@@ -23,6 +19,8 @@ def gen_artificial_data(functions, freq, synch, stoptime, *starttime):
     """
     import time
     import math
+    from auxiliardefs import ArgumentsError
+    from auxiliardefs import logger_server,logger_client
 
     try:
         if starttime:

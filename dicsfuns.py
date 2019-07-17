@@ -38,4 +38,19 @@ def dump_lower_than(dict1, thresh, filename):
         return to_leave
     
 def load_dic_from_json(filename):
+    import json
+    with open(filename, 'r') as fp:
+        dict1=json.load(fp)
+        return dict1
     
+def append_lower_than(dict1, thresh, filename):
+    """
+    The function appends the part of the dictionary that is lower than the 
+    given threshold to the file and returns the part without it in 
+    a new dictionary
+    """
+    import json
+    with open(filename, 'r') as fp:
+        dict2=json.load(fp)
+        u_dict1_dict2 = union_dics(dict1, dict2)
+    dump_lower_than(u_dict1_dict2, thresh, filename)
