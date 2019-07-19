@@ -5,7 +5,9 @@ time
 
 
 """
+import logging
 
+logger_client = logging.getLogger('Client')
 
 
 def gen_artificial_data(functions, freq, synch, stoptime, *starttime):
@@ -20,7 +22,7 @@ def gen_artificial_data(functions, freq, synch, stoptime, *starttime):
     import time
     import math
     from auxiliardefs import ArgumentsError
-    from auxiliardefs import logger_server,logger_client
+   # from auxiliardefs import logger_client
 
     try:
         if starttime:
@@ -46,7 +48,8 @@ def gen_artificial_data(functions, freq, synch, stoptime, *starttime):
                 for itertor in range(len(functions)):     #for each function in list
                     generated_list[itertor].append(functions[itertor](itertor2))
                 time.sleep(freq/100)
+        logger_client.info('Artificial data created:'+str(len(args))+' timepoints')
         return dict(zip(list(args),list(zip(*generated_list)))) # we will pack everything into a dict
     except ArgumentsError as e:
-        print(e)
+        logger_client.error(e, exc_info=True)
         
