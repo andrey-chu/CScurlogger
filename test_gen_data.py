@@ -19,6 +19,8 @@ import os
 # there are two loggers, one for client one for server, one logs in client.log, one in server.log,
 # both duplicate into stderr of console howere I have to call them explicitly in function
 import logging
+import logging.handlers
+import temp_sender
 log_file_max_size = 1024 * 1024 * 20 # megabytes
 log_num_backups = 3
 
@@ -74,4 +76,9 @@ data_dict_union = dicsfuns.union_dics(artificial_data_dict, artificial_data_dict
 data_dict_low = dicsfuns.lower_than_key(data_dict_union, starttime-1000)
 data_dict_high = dicsfuns.higher_or_eq_than_key(data_dict_union, starttime-1000)
 data_dict_low_undumped=dicsfuns.dump_lower_than(data_dict_low, max(data_dict_low.keys())-100, os.path.join(dumpfiles_dir, 'testdumpfile.json'))
+keysnum = len(data_dict_low_undumped)
+maxkey=max(data_dict_low_undumped)
+minkey=min(data_dict_low_undumped)
+result = temp_sender.client_body('127.0.0.1', 65432, 'sendtext', data_dict_low_undumped, keysnum, maxkey, minkey)
+print(result)
 #print(artificial_data_list)

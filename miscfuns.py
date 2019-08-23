@@ -5,7 +5,9 @@ Created on Wed Jul 17 16:21:42 2019
 Some miscellaneous functions
 @author: andrey
 """
-from auxiliardefs import logger_client
+import logging
+
+logger_client = logging.getLogger('Client.'+__name__)
 def check_dir_writable(path1):
     """
     checks for the path exists and it is writtable
